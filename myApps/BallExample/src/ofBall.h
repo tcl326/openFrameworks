@@ -34,6 +34,8 @@ public: // place public functions or variables declarations here
     int mPressY;
     int mReleaseX;
     int mReleaseY;
+    float opacity = 255;
+    float hue;
     
     ofBall(float x, float y, float speedX, float speedY); // constructor - used to initialize an object, if no properties are passed
     //               the program sets them to the default value

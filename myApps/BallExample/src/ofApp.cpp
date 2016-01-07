@@ -1,5 +1,6 @@
 #include "ofApp.h"
-
+int erase;
+bool fade = false;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -24,6 +25,16 @@ void ofApp::draw(){
     for (int a = 0; a < numBalls; a++)
     {
         myBalls[a].draw();
+        if (myBalls[a].opacity == 0)
+        {
+            erase = a;
+            fade = true;
+        }
+    }
+    if (fade){
+        myBalls.erase(myBalls.begin()+erase);
+        numBalls = myBalls.size();
+        fade = false;
     }
 }
 
@@ -63,6 +74,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 void ofApp::mousePressed(int x, int y, int button){
     myBalls.push_back( ofBall(x, y, 0, 0) );
     numBalls = myBalls.size();
+    myBalls.back().frameCount ++;
     myBalls.back().drag = true;
     myBalls.back().mPressX = x;
     myBalls.back().mPressY = y;

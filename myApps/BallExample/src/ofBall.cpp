@@ -17,9 +17,9 @@ ofBall::ofBall(float _x, float _y, float _speedX, float _speedY)
     speedX = _speedX;//ofRandom(-10, 10);           // and random speed and direction
     speedY = _speedY;//ofRandom(-10, 10);
     bounciness = ofRandom (0.2,1);
-    color.setHsb(ofRandom(0,255), 255, 255);
+    color.setHsb(ofRandom(0,255), 255, 255, opacity);
     
-    dim = 50;
+    dim = ofRandom (20, 100);
 }
 
 void ofBall::update(){
@@ -50,6 +50,8 @@ void ofBall::update(){
 
 void ofBall::draw(){
     // values for R, G, B
+    hue = color.getHue();
+    color.setHsb(hue, 255, 255, opacity-= 0.5);
     ofSetColor(color);
     ofDrawCircle(x, y, dim);
 }
