@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofBall.h"
 #include <vector>
+#include "ofxSyphon.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -22,4 +23,13 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     vector < ofBall > myBalls;
     int numBalls = 0;
+    float 	counter;
+    bool	bSmooth;
+    
+    ofTexture tex;
+    
+    ofxSyphonServer mainOutputSyphonServer;
+    ofxSyphonServer individualTextureSyphonServer;
+    
+    ofxSyphonClient mClient;
 };

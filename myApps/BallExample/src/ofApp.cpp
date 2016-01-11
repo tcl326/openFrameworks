@@ -4,6 +4,16 @@ bool fade = false;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    mainOutputSyphonServer.setName("Screen Output");
+    individualTextureSyphonServer.setName("Texture Output");
+    
+    mClient.setup();
+    
+    //using Syphon app Simple Server, found at http://syphon.v002.info/
+    mClient.set("","Simple Server");
+    
+    tex.allocate(200, 100, GL_RGBA);
+
     numBalls = 0;
     ofSetFrameRate(60);
     ofBackground(255, 255, 255);
@@ -36,6 +46,11 @@ void ofApp::draw(){
         numBalls = myBalls.size();
         fade = false;
     }
+    mClient.draw(50, 50);
+    
+    mainOutputSyphonServer.publishScreen();
+    
+    individualTextureSyphonServer.publishTexture(&tex);
 }
 
 //--------------------------------------------------------------
@@ -66,7 +81,6 @@ void ofApp::mouseDragged(int x, int y, int button){
     myBalls.back().x = x;
     myBalls.back().y = y;
     myBalls.back().frameCount ++;
-    cout << myBalls.back().frameCount;
 
 }
 
@@ -86,9 +100,10 @@ void ofApp::mouseReleased(int x, int y, int button){
     myBalls.back().drag = false;
     myBalls.back().mReleaseX = x;
     myBalls.back().mReleaseY = y;
-    myBalls.back().speedX = (myBalls.back().mReleaseX - myBalls.back().mPressX)/myBalls.back().frameCount;
-    myBalls.back().speedY = (myBalls.back().mReleaseY - myBalls.back().mPressY)/myBalls.back().frameCount;
-
+    if (myBalls.back().frameCount != 0){
+        myBalls.back().speedX = (myBalls.back().mReleaseX - myBalls.back().mPressX)/myBalls.back().frameCount;
+        myBalls.back().speedY = (myBalls.back().mReleaseY - myBalls.back().mPressY)/myBalls.back().frameCount;
+    }
 }
 
 //--------------------------------------------------------------

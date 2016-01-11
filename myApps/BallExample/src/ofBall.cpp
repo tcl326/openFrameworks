@@ -19,7 +19,7 @@ ofBall::ofBall(float _x, float _y, float _speedX, float _speedY)
     bounciness = ofRandom (0.2,1);
     color.setHsb(ofRandom(0,255), 255, 255, opacity);
     
-    dim = ofRandom (20, 100);
+    dim = ofRandom (20, 100) ;
 }
 
 void ofBall::update(){
