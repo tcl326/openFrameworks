@@ -16,7 +16,6 @@ void ofApp::setup(){
 
     numBalls = 0;
     ofSetFrameRate(60);
-    ofBackground(255, 255, 255);
     ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
 }
 
