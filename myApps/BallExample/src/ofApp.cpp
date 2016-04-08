@@ -4,19 +4,12 @@ bool fade = false;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    mainOutputSyphonServer.setName("Screen Output");
-    individualTextureSyphonServer.setName("Texture Output");
-    
-    mClient.setup();
-    
-    //using Syphon app Simple Server, found at http://syphon.v002.info/
-    mClient.set("","Simple Server");
     
     tex.allocate(200, 100, GL_RGBA);
 
     numBalls = 0;
     ofSetFrameRate(60);
-    ofEnableBlendMode(OF_BLENDMODE_SUBTRACT);
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
 }
 
 //--------------------------------------------------------------
@@ -45,11 +38,7 @@ void ofApp::draw(){
         numBalls = myBalls.size();
         fade = false;
     }
-    mClient.draw(50, 50);
-    
-    mainOutputSyphonServer.publishScreen();
-    
-    individualTextureSyphonServer.publishTexture(&tex);
+
 }
 
 //--------------------------------------------------------------

@@ -3,7 +3,6 @@
 #include "ofMain.h"
 #include "ofBall.h"
 #include <vector>
-#include "ofxSyphon.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -28,8 +27,4 @@ class ofApp : public ofBaseApp{
     
     ofTexture tex;
     
-    ofxSyphonServer mainOutputSyphonServer;
-    ofxSyphonServer individualTextureSyphonServer;
-    
-    ofxSyphonClient mClient;
 };
